@@ -36,19 +36,24 @@ const userSchema = mongoose.Schema({
     }
 })
 
+//save 호출시 선행 작업이므로 반드시 next 함수를 사용해서 다음 단계로 넘어 가야 함.
 userSchema.pre('save', function (next) {
-    var user = this
+    var user = this //userSchema
 
+    //password 일 경우만 값을 암호화 함.
     if (user.isModified('password')) {
         //비밀번호 암호화
         bcrypt.genSalt(saltRouds, function (err, salt) {
             if (err) return next(err)
+            //입력 받은 user.password를 암호화 해서 hash에 저장한뒤 user.password에 저장
             bcrypt.hash(user.password, salt, function (err, hash) {
                 if (err) return next(err)
                 user.password = hash
                 next()
             })
         })
+    } else {
+        next()
     }
 })
 
