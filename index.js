@@ -1,6 +1,11 @@
 const express = require('express')
 const bodyParser = require('body-parser') //body-parser 수신 data를 파싱 하는데 사용
 const cookieParser = require('cookie-parser') //cookie 를 사용하기 위해 추가
+const config = require('./config/key') //config 설정
+const { auth } = require("./middleware/auth")
+const { User } = require("./model/User")
+const mongoose = require('mongoose') //db middle ware 쿼리 없이 DB CRUD를 사용 할 수 있게 해주는 유용한 미들웨어다.
+
 
 //서버 포트 3000
 const app = express()
@@ -11,16 +16,8 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(cookieParser())
 
-//config 설정
-const config = require('./config/key')
-
-//set model
-//db model
-const { User } = require("./model/User")
-//set mongoose
-//db middle ware 쿼리 없이 DB CRUD를 사용 할 수 있게 해주는 유용한 미들웨어다.
-//Atlas AWS mongoDB 로 설치 해 둠.
-const mongoose = require('mongoose')
+//set db model
+//set mongoose (Atlas AWS mongoDB 로 설치 함)
 mongoose.connect(
     config.mongoURI, 
     { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false } //없어도 되지만 AWS 이용시 오류가 발생하면 입력해 줘야 함.
@@ -70,6 +67,19 @@ app.post('/login', (req, res) => {
     res.cookie("x_auth", user.token)
     .status(200)
     .json({ loginSuccess: true, userId: user._id })
+  })
+})
+
+app.get('/api/users/auth', auth, (req, res) => {
+  res.status(200).json({
+    _id: req.user._id,
+    isAdmin: req.user.role === 0 ? false : true,
+    isAuth: true,
+    email: req.user.email,
+    name: req.user.name,
+    lastname: req.user.lastname,
+    role: req.user.role,
+    image: req.user.image
   })
 })
 
