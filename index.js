@@ -1,13 +1,15 @@
-//set express
-//웹서버
 const express = require('express')
+const bodyParser = require('body-parser') //body-parser 수신 data를 파싱 하는데 사용
+const cookieParser = require('cookie-parser') //cookie 를 사용하기 위해 추가
+
+//서버 포트 3000
 const app = express()
 const port = 3000
-//set body-parser
-//수신 data를 파싱 하는데 사용
-const bodyparser = require('body-parser')
-app.use(bodyparser.urlencoded({extended: true}))
-app.use(bodyparser.json())
+//application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({extended: true}))
+//application/json
+app.use(bodyParser.json())
+app.use(cookieParser())
 
 //config 설정
 const config = require('./config/key')
@@ -63,7 +65,11 @@ app.post('/login', (req, res) => {
 
   //Token 생성
   user.generateToken((err, user) => {
-    
+    if(err) return res.status(400).send(err)
+    //토큰을 저장.(쿠키, 로컬, 세션)
+    res.cookie("x_auth", user.token)
+    .status(200)
+    .json({ loginSuccess: true, userId: user._id })
   })
 })
 
