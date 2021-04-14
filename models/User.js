@@ -58,11 +58,11 @@ userSchema.pre('save', function (next) {
     }
 })
 
-userSchema.methods.comparePassword = function(plainPassword, cb) {
-    //plainPassword 암호화된 비밀번호
-    bcrypt.compare(plainPassword, this.password, function(err, isMatch) {
-        if(err) return cb(err), 
-        cb(null, isMatch)
+userSchema.methods.comparePassword = function (plainPassword, cb) {
+    //plainPassword 1234567 암호회된 비밀번호 $2b$10$l492vQ0M4s9YUBfwYkkaZOgWHExahjWC
+    bcrypt.compare(plainPassword, this.password, function (err, isMatch) {
+        if (err) return cb(err);
+        cb(null, isMatch);
     })
 }
 
@@ -81,7 +81,7 @@ userSchema.methods.generateToken = function(cb) {
     })
 }
 
-userSchema.statics.findByToken = funtion(token, cb) {
+userSchema.statics.findByToken = function(token, cb) {
     var user = this
     //토큰 디코드
     jwt.verify(token, 'secretToken', function (err, decoded) {
