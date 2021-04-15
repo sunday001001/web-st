@@ -6,4 +6,5 @@
 
 # Developing
 gitignore 는 Toptal 사이트에서 만들었다.
-LINK: [Toptal](https://www.toptal.com/developers/gitignore, "Toptal link")
+
+Link: [Toptal](https://www.toptal.com/developers/gitignore, "Toptal link")
