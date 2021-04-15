@@ -1,4 +1,4 @@
-<img src="http://cdn.mydaily.co.kr/FILES/202104/202104141904539188_1.jpg" width="450px" height="300px" title="유강남 홈런" alt="LG Twins 유강남"></img><br/>
+<img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fsports.daum.net%2Fvideo%2F418274827&psig=AOvVaw370olB3NvA4bScgfo4a_FS&ust=1618539378698000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLjM2ZiX_-8CFQAAAAAdAAAAABAP" width="450px" height="300px" title="유강남 홈런" alt="LG Twins 유강남"></img><br/>
 
 # About
 - node.js 공부 겸 여러 용도로 사용할 뼈대 프로젝트
