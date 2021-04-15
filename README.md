@@ -1,3 +1,5 @@
+<img src="/path/to/img.jpg" width="450px" height="300px" title="px(픽셀) 크기 설정" alt="RubberDuck"></img><br/>
+
 # About
 - node.js 공부 겸 여러 용도로 사용할 뼈대 프로젝트
 
