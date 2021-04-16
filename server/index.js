@@ -7,9 +7,9 @@ const { User } = require("./models/User")
 const mongoose = require('mongoose') //db middle ware 쿼리 없이 DB CRUD를 사용 할 수 있게 해주는 유용한 미들웨어다.
 
 
-//서버 포트 3000
+//서버 포트 5000
 const app = express()
-const port = 3000
+const port = 5000
 //application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: true}))
 //application/json
@@ -32,6 +32,10 @@ mongoose.connect(
 //set route
 app.get('/', (req, res) => {
   res.send('Hello World! nodemon test')
+})
+
+app.get('/api/hello', (req, res) => {
+  res.send('hello')
 })
 
 app.post('/api/users/register', (req, res) => {

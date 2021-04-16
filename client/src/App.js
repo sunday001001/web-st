@@ -20,6 +20,8 @@ function App() {
           matches the current URL. Use a <Switch> any time
           you have multiple routes, but you want only one
           of them to render at a time
+
+          https://reactrouter.com/web/example/basic 참고해서 작성됨.
         */}
         <Switch>
           <Route exact path="/">
