@@ -11,11 +11,12 @@ function LandingPage(props) {
     }, [])
 
     const onClickHandler = () => {
+        //logout은 state 편집이 필요 없어서 바로 서버와 통시해 처리 함.
         axios.get('/api/users/logout')
         .then(response => {
 
             if (response.data.success) {
-                props.history.push('/login')
+                props.history.push('/login') //history 를 사용 하려면 withRouter 가 필요 함.
             } else {
                 alert('error')
             }

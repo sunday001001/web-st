@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux'
 import React, { useState } from 'react'
 import { loginUser } from '../../../_actions/user_action'
+import { withRouter } from 'react-router-dom'
 
 function LoginPage(props) {
     //functional redux 로 작성.
@@ -59,4 +60,4 @@ function LoginPage(props) {
     )
 }
 
-export default LoginPage
+export default withRouter(LoginPage)
